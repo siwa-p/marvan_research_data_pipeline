@@ -23,8 +23,8 @@
                 "python.linting.enabled": true,
                 "python.linting.pylintEnabled": true,
                 "python.formatting.provider": "black",
-                "dbt.profilesDir": "${containerWorkspaceFolder}/dbt/my_dbt_project",
-                "dbt.projectDir": "${containerWorkspaceFolder}/dbt/my_dbt_project"
+                "dbt.profilesDir": "${containerWorkspaceFolder}/dbt/marvan_covid",
+                "dbt.projectDir": "${containerWorkspaceFolder}/dbt/marvan_covid"
             }
         }
     },
