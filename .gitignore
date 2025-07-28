@@ -207,3 +207,4 @@ marimo/_lsp/
 __marimo__/
 .DS_Store
 airflow.db
+airflow-webserver.pid
