@@ -31,6 +31,6 @@ They would like to be able to retrieve the data based on a combination of filter
 3. Store the cleaned data in a data warehouse.
 4. Use SQL to transform the data as needed.
 5. Create an API in Python that Marvan researchers can use to acquire data from the data warehouse
-6. Test the API using github actions, make sure to include static code analysis tools for linting and formatting. 
+6. Write 3-5 unit tests where you think they are needed, run unit tests in github actions. Run static code analysis tools locally and paste the results in a txt doc and include it in the repo.  (ie. Black) 
 
 
