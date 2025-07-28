@@ -30,10 +30,7 @@ They would like to be able to retrieve the data based on a combination of filter
 2. Clean the data.
 3. Store the cleaned data in a data warehouse.
 4. Use SQL to transform the data as needed.
-5. Simulate reverse ETL by moving the data from the data warehouse into an OLTP database (in the real world this could be salesforce, or other operations SAAS tools).
-
-#### Create an API in Python that Marvan researchers can use (in place of step 5 above) to acquire data from the data warehouse. 
-*Do not worry about advanced features here, ie - auth, middleware, etc.*
-1. Test the API using github actions, make sure to include static code analysis tools for linting and formatting. 
+5. Create an API in Python that Marvan researchers can use to acquire data from the data warehouse
+6. Test the API using github actions, make sure to include static code analysis tools for linting and formatting. 
 
 
