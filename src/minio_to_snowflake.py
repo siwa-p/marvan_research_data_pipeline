@@ -67,7 +67,7 @@ def minio_raw_data_to_snowflake():
                     result = write_pandas(
                         conn,
                         df,
-                        table_name=f"{obj.object_name.split('.')[0].upper()}-RAW",
+                        table_name=f"{obj.object_name.split('.')[0].replace('-', '_').upper()}_RAW",
                         database=os.getenv("SNOWFLAKE_DATABASE"),
                         auto_create_table=True,
                         schema=os.getenv("SNOWFLAKE_SCHEMA_RAW"),
@@ -81,5 +81,3 @@ def minio_raw_data_to_snowflake():
         logger.error(f"MinIO S3Error: {e}")
     except Exception as e:
         logger.error(f"An error occurred: {e}")
-
-
