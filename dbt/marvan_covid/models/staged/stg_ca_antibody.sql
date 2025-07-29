@@ -7,11 +7,17 @@
 SELECT
     REF_DATE,
     DGUID,
-    "North American Industry Classification System (NAICS)",
-    "COVID-19 rapid test kits demand and usage",
+    "Measure",
+    "Sex at birth",
+    "Age group",
+    "Characteristics",
     VECTOR,
     COORDINATE,
-    VALUE as PERCENT,
-    STATUS as DATA_QUALITY_RATING
-FROM {{ source("RAW", "CA_ANTIBODY_RAW") }}
+    VALUE AS PERCENT,
+    CASE
+        WHEN STATUS = 'x' THEN 'suppressed to meet the confidentiality requirements of the Statistics Act'
+        WHEN STATUS = 'E' THEN 'use with caution'
+        ELSE STATUS
+    END AS DATA_QUALITY_RATING
+FROM {{ source("RAW", "CA_ANTIBODY_RAW")}}
 WHERE GEO = 'Canada'
