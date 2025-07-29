@@ -3,7 +3,7 @@ from minio import Minio
 from minio.error import S3Error
 import dotenv
 
-from logger import setup_logging
+from src.logger import setup_logging
 from snowflake.connector.pandas_tools import write_pandas
 import pandas as pd
 import snowflake.connector
@@ -82,4 +82,4 @@ def minio_raw_data_to_snowflake():
     except Exception as e:
         logger.error(f"An error occurred: {e}")
 
-minio_raw_data_to_snowflake()
+
