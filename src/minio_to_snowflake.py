@@ -34,7 +34,6 @@ def minio_raw_data_to_snowflake():
             schema=os.getenv("SNOWFLAKE_SCHEMA_BRONZE"),
             role=os.getenv("SNOWFLAKE_ROLE")
         )
-        cursor = conn.cursor()
         logger.info("Connected to Snowflake")
 
         objects_to_process = minio_client.list_objects(
@@ -73,14 +72,6 @@ def minio_raw_data_to_snowflake():
                         schema=os.getenv("SNOWFLAKE_SCHEMA_BRONZE"),
                         overwrite=True
                     )
-                    success = result[0]
-                    nrows = result[2] if len(result) > 2 else result[1]
-                    if success:
-                        logger.info(
-                            f"Data from {obj.object_name} written to Snowflake successfully: {nrows} rows")
-                    else:
-                        logger.error(
-                            f"Failed to write data from {obj.object_name} to Snowflake")
                 except Exception as e:
                     logger.error(
                         f"Error processing {obj.object_name}: {e}")
