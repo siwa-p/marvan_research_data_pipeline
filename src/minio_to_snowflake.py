@@ -2,7 +2,8 @@ import os
 from minio import Minio
 from minio.error import S3Error
 import dotenv
-from src.logger import setup_logging
+
+from logger import setup_logging
 from snowflake.connector.pandas_tools import write_pandas
 import pandas as pd
 import snowflake.connector
@@ -31,7 +32,7 @@ def minio_raw_data_to_snowflake():
             account=os.getenv("SNOWFLAKE_ACCOUNT"),
             warehouse=os.getenv("SNOWFLAKE_WAREHOUSE"),
             database=os.getenv("SNOWFLAKE_DATABASE"),
-            schema=os.getenv("SNOWFLAKE_SCHEMA_BRONZE"),
+            schema=os.getenv("SNOWFLAKE_SCHEMA_RAW"),
             role=os.getenv("SNOWFLAKE_ROLE")
         )
         logger.info("Connected to Snowflake")
@@ -66,10 +67,10 @@ def minio_raw_data_to_snowflake():
                     result = write_pandas(
                         conn,
                         df,
-                        table_name=f"{obj.object_name}_raw",
+                        table_name=f"{obj.object_name.split('.')[0].upper()}-RAW",
                         database=os.getenv("SNOWFLAKE_DATABASE"),
                         auto_create_table=True,
-                        schema=os.getenv("SNOWFLAKE_SCHEMA_BRONZE"),
+                        schema=os.getenv("SNOWFLAKE_SCHEMA_RAW"),
                         overwrite=True
                     )
                 except Exception as e:
@@ -80,3 +81,5 @@ def minio_raw_data_to_snowflake():
         logger.error(f"MinIO S3Error: {e}")
     except Exception as e:
         logger.error(f"An error occurred: {e}")
+
+minio_raw_data_to_snowflake()
