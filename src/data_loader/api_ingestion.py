@@ -18,6 +18,7 @@ minio_access_key = os.getenv("MINIO_ACCESS_KEY")
 minio_secret_key = os.getenv("MINIO_SECRET_KEY")
 minio_url = os.getenv("MINIO_EXTERNAL_URL")
 minio_bucket_name = os.getenv("MINIO_BUCKET_NAME")
+page_size = 365
 
 def upload_to_minio(minio_client, bucket_name, data, object_name):
     csv_buffer = io.StringIO()
@@ -30,12 +31,12 @@ def upload_to_minio(minio_client, bucket_name, data, object_name):
         length=len(csv_bytes),
         content_type="text/csv"
     )
-def get_time_series_data(url: str) -> list[dict[str, str]]:
+def get_time_series_data(url):
     data = []
     while url:
         logger.info(f"Requesting data from URL: {url}")
         try:
-            response = requests.get(url, params={"page_size": 365})
+            response = requests.get(url, params={f"page_size": {page_size}})
             response.raise_for_status()
         except requests.RequestException as e:
             logger.error(f"Request failed: {e}")
@@ -54,18 +55,19 @@ def get_time_series_data(url: str) -> list[dict[str, str]]:
 
 
 def main():
-    url = "https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_cases_casesByDay"
+    url = os.getenv("UK_API_URL")
     data = get_time_series_data(url)
     minio_client = Minio(
         minio_url,
         access_key=minio_access_key,
-        secret_key=minio_secret_key
+        secret_key=minio_secret_key,
+        secure=False
         )
     upload_to_minio(
         minio_client,
         minio_bucket_name,
         data,
-        "uk-covcasesbyday.csv"
+        os.getenv("UK_CSV_NAME")
     )
 if __name__ == '__main__':
     main()
