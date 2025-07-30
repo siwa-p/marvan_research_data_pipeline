@@ -1,9 +1,9 @@
 name: CI Pipeline
 on:
   push:
-    branches: [ feature/actions_ps ]
+    branches: [ develop ]
   pull_request:
-    branches: [ feature/actions_ps ]
+    branches: [ develop ]
 jobs:
   quality:
     name: Code Quality
