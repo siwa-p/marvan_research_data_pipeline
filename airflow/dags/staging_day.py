@@ -36,11 +36,11 @@ dbt_debug = BashOperator(
     dag=dag,
 )
 
-# dbt_test_staging = BashOperator(
-#     task_id="dbt_test_staging",
-#     bash_command=f"cd {DBT_PROJECT_DIR} && dbt test --select path:models/staged --profiles-dir {DBT_PROFILES_DIR}",
-#     dag=dag,
-# )
+dbt_test_staging = BashOperator(
+    task_id="dbt_test_staging",
+    bash_command=f"cd {DBT_PROJECT_DIR} && dbt test --select path:models/staged --profiles-dir {DBT_PROFILES_DIR}",
+    dag=dag,
+)
 
 dbt_run_staging = BashOperator(
     task_id="dbt_run_staging",
@@ -49,5 +49,4 @@ dbt_run_staging = BashOperator(
 )
 
 
-dbt_debug >> dbt_run_staging
-# dbt_debug >> dbt_test_staging >> dbt_run_staging
+dbt_debug >> dbt_test_staging >> dbt_run_staging 
