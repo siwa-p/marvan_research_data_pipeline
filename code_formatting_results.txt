@@ -1,0 +1,45 @@
+Local Analysis with Flake8
+
+flake8 src/ tests/ airflow/
+
+results:
+
+airflow/dags/data_ingestion_dag.py:11:1: F401 'src.logger.setup_logging' imported but unused
+airflow/dags/data_ingestion_dag.py:11:1: E402 module level import not at top of file
+airflow/dags/data_ingestion_dag.py:12:1: E402 module level import not at top of file
+airflow/dags/data_ingestion_dag.py:13:1: E402 module level import not at top of file
+airflow/dags/data_ingestion_dag.py:15:1: E302 expected 2 blank lines, found 1
+airflow/dags/data_ingestion_dag.py:27:1: E302 expected 2 blank lines, found 1
+airflow/dags/data_ingestion_dag.py:28:80: E501 line too long (81 > 79 characters)
+airflow/dags/data_ingestion_dag.py:39:1: E305 expected 2 blank lines after class or function definition, found 1
+airflow/dags/staging_dag.py:1:1: F401 'datetime.datetime' imported but unused
+airflow/dags/staging_dag.py:3:1: F401 'pathlib.Path' imported but unused
+airflow/dags/staging_dag.py:35:80: E501 line too long (88 > 79 characters)
+airflow/dags/staging_dag.py:41:80: E501 line too long (115 > 79 characters)
+airflow/dags/staging_dag.py:47:80: E501 line too long (114 > 79 characters)
+airflow/dags/staging_dag.py:52:49: W291 trailing whitespace
+airflow/dags/staging_dag.py:52:50: W292 no newline at end of file
+src/data_loader/api_ingestion.py:10:1: E402 module level import not at top of file
+src/data_loader/api_ingestion.py:11:1: E402 module level import not at top of file
+src/data_loader/api_ingestion.py:12:1: E402 module level import not at top of file
+src/data_loader/api_ingestion.py:23:1: E302 expected 2 blank lines, found 1
+src/data_loader/api_ingestion.py:34:1: E302 expected 2 blank lines, found 0
+src/data_loader/api_ingestion.py:39:50: F541 f-string is missing placeholders
+src/data_loader/api_ingestion.py:72:1: E305 expected 2 blank lines after class or function definition, found 0
+src/data_loader/api_ingestion.py:74:1: W293 blank line contains whitespace
+src/main.py:4:1: E305 expected 2 blank lines after class or function definition, found 1
+src/minio_to_snowflake.py:65:80: E501 line too long (80 > 79 characters)
+src/minio_to_snowflake.py:67:21: F841 local variable 'result' is assigned to but never used
+src/minio_to_snowflake.py:70:80: E501 line too long (100 > 79 characters)
+tests/test_main.py:1:1: F401 'pytest' imported but unused
+
+
+black src/ tests/ airflow/ dbt/
+
+reformatted /workspaces/project-marvan-data-pipeline-model-citizens/airflow/dags/staging_dag.py
+reformatted /workspaces/project-marvan-data-pipeline-model-citizens/airflow/dags/data_ingestion_dag.py
+reformatted /workspaces/project-marvan-data-pipeline-model-citizens/src/data_loader/api_ingestion.py
+reformatted /workspaces/project-marvan-data-pipeline-model-citizens/src/minio_to_snowflake.py
+
+All done! ✨ 🍰 ✨
+4 files reformatted, 2 files left unchanged.

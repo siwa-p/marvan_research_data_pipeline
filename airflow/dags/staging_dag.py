@@ -23,7 +23,7 @@ dag = DAG(
     default_args=default_args,
     description="dbt staging pipeline",
     schedule_interval=timedelta(days=1),
-    max_active_runs=1
+    max_active_runs=1,
 )
 
 # dbt project paths (in container)
@@ -49,4 +49,4 @@ dbt_run_staging = BashOperator(
 )
 
 
-dbt_debug >> dbt_test_staging >> dbt_run_staging 
+dbt_debug >> dbt_test_staging >> dbt_run_staging
