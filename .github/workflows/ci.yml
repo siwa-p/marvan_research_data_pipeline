@@ -26,5 +26,5 @@ jobs:
     - name: Check code formatting
       run: |
         isort --check-only src/ tests/ airflow
-        mypy src/ tests/ airflow
-        black src/ tests/ airflow
+        mypy src/ tests/ airflow/
+        black src/ tests/ airflow/
