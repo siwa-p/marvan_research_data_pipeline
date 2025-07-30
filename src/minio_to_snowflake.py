@@ -22,7 +22,7 @@ def minio_raw_data_to_snowflake():
             endpoint=os.getenv("MINIO_EXTERNAL_URL"),
             access_key=os.getenv("MINIO_ACCESS_KEY"),
             secret_key=os.getenv("MINIO_SECRET_KEY"),
-            secure=False
+            secure=False,
         )
         logger.info("Connected to MinIO")
 
@@ -33,36 +33,33 @@ def minio_raw_data_to_snowflake():
             warehouse=os.getenv("SNOWFLAKE_WAREHOUSE"),
             database=os.getenv("SNOWFLAKE_DATABASE"),
             schema=os.getenv("SNOWFLAKE_SCHEMA_RAW"),
-            role=os.getenv("SNOWFLAKE_ROLE")
+            role=os.getenv("SNOWFLAKE_ROLE"),
         )
         logger.info("Connected to Snowflake")
 
         objects_to_process = minio_client.list_objects(
-            bucket_name=os.getenv("MINIO_BUCKET_NAME"),
-            recursive=True
+            bucket_name=os.getenv("MINIO_BUCKET_NAME"), recursive=True
         )
 
         minio_data = []
         for obj in objects_to_process:
-            if obj.object_name.endswith('.csv'):
+            if obj.object_name.endswith(".csv"):
                 minio_data.append(obj.object_name)
                 logger.info(f"Found CSV file: {obj.object_name}")
 
                 try:
                     minio_response = minio_client.get_object(
                         bucket_name=os.getenv("MINIO_BUCKET_NAME"),
-                        object_name=obj.object_name
+                        object_name=obj.object_name,
                     )
-                    data = minio_response.read().decode('utf-8')
+                    data = minio_response.read().decode("utf-8")
                     logger.info(f"Read data from {obj.object_name}")
                     minio_response.close()
                     minio_response.release_conn()
-                    logger.info(
-                        f"Data from {obj.object_name} processed successfully")
+                    logger.info(f"Data from {obj.object_name} processed successfully")
 
                     df = pd.read_csv(io.StringIO(data))
-                    logger.info(
-                        f"Transformed data from {obj.object_name} to DataFrame")
+                    logger.info(f"Transformed data from {obj.object_name} to DataFrame")
 
                     result = write_pandas(
                         conn,
@@ -71,11 +68,10 @@ def minio_raw_data_to_snowflake():
                         database=os.getenv("SNOWFLAKE_DATABASE"),
                         auto_create_table=True,
                         schema=os.getenv("SNOWFLAKE_SCHEMA_RAW"),
-                        overwrite=True
+                        overwrite=True,
                     )
                 except Exception as e:
-                    logger.error(
-                        f"Error processing {obj.object_name}: {e}")
+                    logger.error(f"Error processing {obj.object_name}: {e}")
 
     except S3Error as e:
         logger.error(f"MinIO S3Error: {e}")
