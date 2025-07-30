@@ -22,7 +22,7 @@ dag = DAG(
     default_args=default_args,
     description="dbt cleaning pipeline",
     schedule_interval=timedelta(days=1),
-    max_active_runs=1
+    max_active_runs=1,
 )
 
 # dbt project paths (in container)
@@ -48,4 +48,4 @@ dbt_run_cleaning = BashOperator(
 )
 
 
-dbt_debug >> dbt_test_cleaning >> dbt_run_cleaning 
+dbt_debug >> dbt_test_cleaning >> dbt_run_cleaning
