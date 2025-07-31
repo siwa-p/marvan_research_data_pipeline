@@ -9,3 +9,4 @@ sources:
       - name: STG_CA_RAPIDTESTDEMAND
       - name: STG_UK_COVCASESBYDAY
       - name: STG_US_DEATHCOUNTS
+      - name: STG_DATASET_METADATA
