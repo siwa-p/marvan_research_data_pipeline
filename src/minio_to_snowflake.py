@@ -63,6 +63,8 @@ def minio_raw_data_to_snowflake():
 
                     # Add a surrogate primary key column
                     df.insert(0, "id", range(1, len(df) + 1))
+                    logger.info(f"Added surrogate primary key to DataFrame for {obj.object_name}")
+                    logger.info(f"DataFrame head:\n{df.head()}")
 
                     result = write_pandas(
                         conn,
