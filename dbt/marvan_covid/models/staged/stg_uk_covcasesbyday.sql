@@ -1,9 +1,11 @@
 {{  config(
-  materialized="incremental"
+  materialized="incremental",
+  unique_key="id"
 )
 }}
 
 SELECT
+    "id",
    TO_DATE("date") AS "date",
    "epiweek",
    "metric_value"::INTEGER AS "daily_case_count"
