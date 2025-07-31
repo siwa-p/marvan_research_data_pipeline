@@ -6,6 +6,7 @@
 }}
 
 SELECT
+    "id",
     "year",
     "month",
     "group",

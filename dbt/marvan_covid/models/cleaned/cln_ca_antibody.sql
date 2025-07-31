@@ -6,6 +6,7 @@
 }}
 
 SELECT
+    "id",
     REF_DATE,
     DGUID,
     "Measure",
