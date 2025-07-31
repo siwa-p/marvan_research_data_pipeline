@@ -1,10 +1,11 @@
 {{ config(
     materialized="incremental",
-    unique_key="VECTOR"
+    unique_key="id"
   )
 }}
 
 SELECT
+    "id",
     REF_DATE,
     DGUID,
     "North American Industry Classification System (NAICS)",

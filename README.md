@@ -1,3 +1,11 @@
+# Data Engineering Project 3: Marvan Think Tank Covid-19 Multinational Data Catalog
+
+
+### Additional Repositories that Work in Tandem with This Project
+[Exploratory Data Analysis](https://github.com/siwa-p/marvan_project_eda)
+
+[API for User Access](https://github.com/MichaelGalo/marvan-covid-api)
+
 ### Introduction
 
 #### Marvan, a strategic think tank, has asked your company to build a catalog of **national** level open data related to the Covid-19 pandemic for the following countries:

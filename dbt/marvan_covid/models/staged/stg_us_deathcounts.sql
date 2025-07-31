@@ -1,10 +1,12 @@
 {{ config(
-  materialized="incremental"
+  materialized="incremental",
+  unique_key="id"
 )
 
 }}
 
 SELECT
+    "id",
     "year",
     "month",
     "group",

@@ -5,6 +5,7 @@
 }}
 
 SELECT
+    "id",
     REF_DATE,
     DGUID,
     "North American Industry Classification System (NAICS)",

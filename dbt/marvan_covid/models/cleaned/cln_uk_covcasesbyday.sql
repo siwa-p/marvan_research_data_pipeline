@@ -5,6 +5,7 @@
 }}
 
 SELECT
+    "id",
    "date",
    "epiweek",
    "daily_case_count",
