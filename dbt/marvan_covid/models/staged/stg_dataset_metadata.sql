@@ -1,6 +1,6 @@
 {{ config(
-    materialized="incremental",
-    unique_key="table"
+    materialized="table",
+    unique_key="dataset_id"
   )
 }}
 
