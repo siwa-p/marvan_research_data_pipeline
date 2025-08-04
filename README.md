@@ -1,10 +1,16 @@
 # Data Engineering Project 3: Marvan Think Tank Covid-19 Multinational Data Catalog
 
+This project was completed as part of a group assignment for the NSS Data Engineering Bootcamp.
+
+### Team:
+
+- [Michael Galo](https://github.com/MichaelGalo)
+- [Alex Berka](https://github.com/alexberka)
 
 ### Additional Repositories that Work in Tandem with This Project
 [Exploratory Data Analysis](https://github.com/siwa-p/marvan_project_eda)
 
-[API for User Access](https://github.com/MichaelGalo/marvan-covid-api)
+[API for User Access](https://github.com/siwa-p/marvan_research_covid_api)
 
 ### Introduction
 
@@ -40,5 +46,3 @@ They would like to be able to retrieve the data based on a combination of filter
 4. Use SQL to transform the data as needed.
 5. Create an API in Python that Marvan researchers can use to acquire data from the data warehouse
 6. Write 3-5 unit tests where you think they are needed, run unit tests in github actions. Run static code analysis tools locally and paste the results in a txt doc and include it in the repo.  (ie. Black) 
-
-
